@@ -1,16 +1,16 @@
-sudo: required
+# sudo: required
         
 language: generic
 
 services:
   - docker
   
-# before_install:
-#   - echo "start creating an image with dockerfile"
-#   - docker build -t tylerkim/single_react -f Dockerfile.dev .
+before_install:
+  - echo "start creating an image with dockerfile"
+  - docker build -t tylerkim/single_react -f Dockerfile.dev .
   
-# script:
-#   - docker run -e CI=true tylerkim/single_react npm run test -- --coverage
+script:
+  - docker run -e CI=true tylerkim/single_react npm run test -- --coverage
 
 deploy:
   provider: elasticbeanstalk

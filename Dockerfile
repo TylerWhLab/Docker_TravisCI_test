@@ -24,6 +24,7 @@ RUN npm run build
 # run stage
 # nginx 설치된 이미지
 FROM nginx 
+EXPOSE 80
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 # /usr/src/app/build 파일이 builder 에서 온다는 것을 명시
 # /usr/share/nginx/html => nginx 웹 루트 디렉터리

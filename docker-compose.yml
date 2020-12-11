@@ -22,3 +22,4 @@ services:
      - ./:/usr/src/app
     command: ["npm", "run", "test"]
     
+    

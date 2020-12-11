@@ -1,0 +1,18 @@
+# base image(OS), node는 npm이 설치되어 있는 이미지 중 하나
+FROM node:alpine
+
+# workdir 없으면 / 에 업로드
+WORKDIR /usr/src/app
+
+# 소스코드만 변경 시 npm install 로 종속성을 또 다운받지 않도록 package.json만 따로 copy
+COPY package.json ./
+
+# 추가적으로 필요한 파일들
+RUN npm install
+
+# 컨테이너에 넣어야할 파일(모든 소스코드, 설정), 컨테이너 내 목적지
+COPY ./ ./
+
+# 컨테이너 시작시 실행 될 명령어, 1회만 쓸 수 있음
+# react run
+CMD ["npm", "run", "start"]

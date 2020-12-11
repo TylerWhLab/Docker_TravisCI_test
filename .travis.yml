@@ -1,0 +1,25 @@
+sudo: required
+        
+language: generic
+
+services:
+  - docker
+  
+before_install:
+  - echo "start creating an image with dockerfile"
+  - docker build -t tylerkim/single_react -f Dockerfile.dev .
+  
+script:
+  - docker run -e CI=true tylerkim/single_react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-2"
+  app: "single_react"
+  env: "SingleReact-env"
+  bucket_name: "elasticbeanstalk-ap-northeast-2-396924750211"
+  bucket_path: "single_react"
+  on:
+    branch: main
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_ACCESS_KEY

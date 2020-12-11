@@ -13,12 +13,12 @@ services:
      - CHOKIDAR_USEPOLLING=true
     stdin_open: true
 
-  # tests: # 임의 이름 해도 됨
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.dev
-  #   volumes:
-  #    - /usr/src/app/node_modules
-  #    - ./:/usr/src/app
-  #   command: ["npm", "run", "test"]
+  tests: # 임의 이름 해도 됨
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+     - /usr/src/app/node_modules
+     - ./:/usr/src/app
+    command: ["npm", "run", "test"]
     
